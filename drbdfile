@@ -1,0 +1,44 @@
+
+shareimprove this question
+edited Feb 17 '15 at 15:01
+
+Tshepang
+5,2421264108
+asked Jun 9 '14 at 6:21
+
+hikki
+8833817
+2	 	
+looks like your local repo is not in sync with the git repo. did you try to do git pull ? – R11G Jun 9 '14 at 6:25
+1	 	
+yes, but I have no idea with the following syntax after git pull it says git pull <remote> <branch>, can you let me see an example syntax for git pull? – hikki Jun 9 '14 at 6:29
+1	 	
+Do check this similar question - stackoverflow.com/questions/18588974/… – R11G Jun 9 '14 at 6:33
+1	 	
+@R11G thank you sir! this link helped me stackoverflow.com/a/18589043/3626672 – hikki Jun 9 '14 at 6:42
+2	 	
+I got that error on a new repo. This helped: stackoverflow.com/a/6518774/2067690 – HumanInDisguise Jul 8 '15 at 20:38
+add a comment
+9 Answers
+active oldest votes
+up vote
+163
+down vote
+accepted
+If the GitHub repo has seen new commits pushed to it, while you were working locally, I would advice for:
+
+git pull --rebase
+git push
+The full syntax is:
+
+git pull --rebase origin master
+git push origin master
+That way, you would replay (the --rebase part) your local commits on top of the newly updated origin/master (or origin/yourBranch: git pull origin yourBranch).
+
+See a more complete example in the chapter 6 Pull with rebase of the Git Pocket Book.
+
+I would recommend a:
+
+git push -u origin master
+That would establish a tracking relationship between your local master branch and its upstream branch.
+After that, any future push for that branch can be done with a simple:
